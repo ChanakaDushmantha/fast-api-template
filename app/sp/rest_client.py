@@ -3,7 +3,7 @@ from typing import List
 
 import httpx
 
-from app.exceptions.exception import RestClientException, UnauthorizedException
+from exception.exception import UnauthorizedException, RestClientException
 
 logger = getLogger(__name__)
 

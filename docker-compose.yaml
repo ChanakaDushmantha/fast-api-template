@@ -10,4 +10,4 @@ services:
       - "1024:8000"
     restart: always
     container_name: <container name>
-    image: <image name:tag>
+    image: image_name:tag

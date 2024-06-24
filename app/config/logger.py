@@ -14,10 +14,10 @@ class Formatter(colorlog.ColoredFormatter):
         dt = datetime.datetime.fromtimestamp(timestamp, tz=pytz.UTC)
         return dt.astimezone(pytz.timezone('Asia/Colombo'))
 
-    def formatTime(self, record, datefmt=None):
+    def formatTime(self, record, date_format=None):
         dt = self.converter(record.created)
-        if datefmt:
-            s = dt.strftime(datefmt)
+        if date_format:
+            s = dt.strftime(date_format)
         else:
             try:
                 s = dt.isoformat(timespec='milliseconds')
