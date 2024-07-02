@@ -5,7 +5,7 @@ import sys
 import colorlog
 import pytz
 
-from app.config.config import LOG_LEVEL
+from config.config import LOG_LEVEL
 
 
 class Formatter(colorlog.ColoredFormatter):
