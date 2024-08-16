@@ -12,27 +12,27 @@ logger = getLogger(__name__)
 
 def add_exception_handler(app: FastAPI):
     @app.exception_handler(Exception)
-    async def handle_generic_exception(_request: Request, exc: Exception):
+    async def handle_generic_exception(_: Request, exc: Exception):
         return JSONResponse(status_code=HTTP_400_BAD_REQUEST,
                             content={'success': False,
                                      'message': str(exc)})
 
     @app.exception_handler(NoDataFoundException)
-    async def handle_no_data_found_exception(_request: Request, exc: NoDataFoundException):
+    async def handle_no_data_found_exception(_: Request, exc: NoDataFoundException):
         logger.error(exc)
         return JSONResponse(status_code=HTTP_400_BAD_REQUEST,
                             content={'success': False,
                                      'message': exc.message})
 
     @app.exception_handler(IntegrityError)
-    async def handle_integrity_error(_request: Request, exc: IntegrityError):
+    async def handle_integrity_error(_: Request, exc: IntegrityError):
         logger.exception(exc)
         return JSONResponse(status_code=HTTP_400_BAD_REQUEST,
                             content={'success': False,
                                      'message': str(exc)})
 
     @app.exception_handler(RestClientException)
-    async def handle_no_data_found_exception(_request: Request, exc: RestClientException):
+    async def handle_no_data_found_exception(_: Request, exc: RestClientException):
         logger.error(exc.message)
         return JSONResponse(status_code=HTTP_400_BAD_REQUEST,
                             content={'success': False,
@@ -40,7 +40,7 @@ def add_exception_handler(app: FastAPI):
                                      'status_code': exc.status})
 
     @app.exception_handler(UnauthorizedException)
-    async def handle_unauthorized_exception(_request: Request, exc: UnauthorizedException):
+    async def handle_unauthorized_exception(_: Request, exc: UnauthorizedException):
         logger.error(exc.message)
         return JSONResponse(status_code=HTTP_400_BAD_REQUEST,
                             content={'success': False,
