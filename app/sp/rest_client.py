@@ -30,7 +30,7 @@ async def get_request(base_url: str, endpoint: str = None, headers: dict = None,
         response = await client.get(url, headers=headers, params=params)
         if response.status_code == 401:
             raise UnauthorizedException(message=response.text, status=response.status_code)
-        if response.status_code != 200:
+        if response.status_code not in [200, 201]:
             raise RestClientException(message=response.text, status=response.status_code)
         return response.json()
 
@@ -58,7 +58,7 @@ async def post_request(base_url: str, endpoint: str = None, headers: dict = None
         response = await client.post(url, headers=headers, json=data)
         if response.status_code == 401:
             raise UnauthorizedException(message=response.text, status=response.status_code)
-        if response.status_code != 200:
+        if response.status_code not in [200, 201]:
             raise RestClientException(message=response.text, status=response.status_code)
         return response.json()
 
